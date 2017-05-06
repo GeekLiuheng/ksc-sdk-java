@@ -3,10 +3,13 @@ package com.ksc.ket.model;
 public class Logo {
 	private String pic;
 	private String usage_scenario;
+	private Integer optimal_w;
+	private Integer optimal_h;
 	private Integer short_side;
 	private Integer disable_scale;
 	private Integer offsetX;
 	private Integer offsetY;
+	private String pic_url;
 
 	public String getPic() {
 		return pic;
@@ -22,6 +25,22 @@ public class Logo {
 
 	public void setUsage_scenario(String usage_scenario) {
 		this.usage_scenario = usage_scenario;
+	}
+
+	public Integer getOptimal_w() {
+		return optimal_w;
+	}
+
+	public void setOptimal_w(Integer optimal_w) {
+		this.optimal_w = optimal_w;
+	}
+
+	public Integer getOptimal_h() {
+		return optimal_h;
+	}
+
+	public void setOptimal_h(Integer optimal_h) {
+		this.optimal_h = optimal_h;
 	}
 
 	public Integer getShort_side() {
@@ -56,4 +75,11 @@ public class Logo {
 		this.disable_scale = disable_scale;
 	}
 
+	public String getPic_url() {
+		return pic_url;
+	}
+
+	public void setPic_url(String pic_url) {
+		this.pic_url = pic_url;
+	}
 }
