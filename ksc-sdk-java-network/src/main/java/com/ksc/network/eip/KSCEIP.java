@@ -1,9 +1,6 @@
 package com.ksc.network.eip;
 
-import com.ksc.network.eip.model.DescribeAddressesRequest;
-import com.ksc.network.eip.model.DescribeAddressesResult;
-import com.ksc.network.eip.model.GetLinesRequest;
-import com.ksc.network.eip.model.GetLinesResult;
+import com.ksc.network.eip.model.*;
 
 public interface KSCEIP {
 	/**
@@ -34,4 +31,25 @@ public interface KSCEIP {
 	public GetLinesResult getLines(GetLinesRequest getLinesRequest);
 
 	public GetLinesResult getLines();
+	
+    /**
+     * 创建EIP
+     */
+    public AllocateAddressResult allocateAddress(AllocateAddressRequest allocateAddressRequest);
+    
+    /**
+     * 删除EIP
+     */
+    public ReleaseAddressResult releaseAddress(ReleaseAddressRequest releaseAddressRequest);
+    
+    /**
+     * 绑定弹性IP
+     */
+    public AssociateAddressResult associateAddress(AssociateAddressRequest associateAddressRequest);
+    
+    /**
+     * 解绑弹性IP
+     */
+    public DisassociateAddressResult disassociateAddress(DisassociateAddressRequest disassociateAddressRequest);
+
 }

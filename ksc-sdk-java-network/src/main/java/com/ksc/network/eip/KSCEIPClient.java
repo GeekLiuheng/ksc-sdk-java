@@ -1,18 +1,6 @@
 package com.ksc.network.eip;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.w3c.dom.Node;
-
-import com.ksc.ClientConfiguration;
-import com.ksc.ClientConfigurationFactory;
-import com.ksc.KscServiceException;
-import com.ksc.KscWebServiceClient;
-import com.ksc.KscWebServiceRequest;
-import com.ksc.KscWebServiceResponse;
-import com.ksc.Request;
-import com.ksc.Response;
+import com.ksc.*;
 import com.ksc.auth.AWSCredentials;
 import com.ksc.auth.AWSCredentialsProvider;
 import com.ksc.auth.DefaultAWSCredentialsProviderChain;
@@ -22,20 +10,18 @@ import com.ksc.http.HttpResponseHandler;
 import com.ksc.http.StaxResponseHandler;
 import com.ksc.internal.StaticCredentialsProvider;
 import com.ksc.metrics.RequestMetricCollector;
-import com.ksc.network.eip.model.DescribeAddressesRequest;
-import com.ksc.network.eip.model.DescribeAddressesResult;
-import com.ksc.network.eip.model.GetLinesRequest;
-import com.ksc.network.eip.model.GetLinesResult;
-import com.ksc.network.eip.model.transform.DescribeAddressesRequestMarshaller;
-import com.ksc.network.eip.model.transform.DescribeAddressesResultStaxUnmarshaller;
-import com.ksc.network.eip.model.transform.GetLinesRequestMarshaller;
-import com.ksc.network.eip.model.transform.GetLinesResultStaxUnmarshaller;
+import com.ksc.network.eip.model.*;
+import com.ksc.network.eip.model.transform.*;
 import com.ksc.transform.LegacyErrorUnmarshaller;
 import com.ksc.transform.StandardErrorUnmarshaller;
 import com.ksc.transform.Unmarshaller;
 import com.ksc.util.CredentialUtils;
 import com.ksc.util.KscRequestMetrics;
 import com.ksc.util.KscRequestMetrics.Field;
+import org.w3c.dom.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KSCEIPClient extends KscWebServiceClient implements KSCEIP{
 	/** Provider for AWS credentials. */
@@ -297,4 +283,125 @@ public class KSCEIPClient extends KscWebServiceClient implements KSCEIP{
 
 		return client.execute(request, responseHandler, errorResponseHandler, executionContext);
 	}
+	
+    @Override
+    public AllocateAddressResult allocateAddress(AllocateAddressRequest allocateAddressRequest) {
+        ExecutionContext executionContext = createExecutionContext(allocateAddressRequest);
+        KscRequestMetrics kscRequestMetrics = executionContext.getKscRequestMetrics();
+        kscRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AllocateAddressRequest> request = null;
+        Response<AllocateAddressResult> response = null;
+        try {
+            kscRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AllocateAddressRequestMarshaller().marshall(super
+                        .beforeMarshalling(allocateAddressRequest));
+                // Binds the request metrics to the current request.
+                request.setKscRequestMetrics(kscRequestMetrics);
+            } finally {
+                kscRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<AllocateAddressResult> responseHandler = new StaxResponseHandler<AllocateAddressResult>(
+                    new AllocateAddressResultStaxUnmarshaller());
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getKscResponse();
+
+        } finally {
+
+            endClientExecution(kscRequestMetrics, request, response);
+        }
+    }
+    
+    @Override
+    public ReleaseAddressResult releaseAddress(ReleaseAddressRequest releaseAddressRequest) {
+        ExecutionContext executionContext = createExecutionContext(releaseAddressRequest);
+        KscRequestMetrics kscRequestMetrics = executionContext.getKscRequestMetrics();
+        kscRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ReleaseAddressRequest> request = null;
+        Response<ReleaseAddressResult> response = null;
+        try {
+            kscRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ReleaseAddressRequestMarshaller().marshall(super
+                        .beforeMarshalling(releaseAddressRequest));
+                // Binds the request metrics to the current request.
+                request.setKscRequestMetrics(kscRequestMetrics);
+            } finally {
+                kscRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<ReleaseAddressResult> responseHandler = new StaxResponseHandler<ReleaseAddressResult>(
+                    new ReleaseAddressResultStaxUnmarshaller());
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getKscResponse();
+
+        } finally {
+
+            endClientExecution(kscRequestMetrics, request, response);
+        }
+    }
+    
+    @Override
+    public AssociateAddressResult associateAddress(AssociateAddressRequest associateAddressRequest) {
+        ExecutionContext executionContext = createExecutionContext(associateAddressRequest);
+        KscRequestMetrics kscRequestMetrics = executionContext.getKscRequestMetrics();
+        kscRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateAddressRequest> request = null;
+        Response<AssociateAddressResult> response = null;
+        try {
+            kscRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateAddressRequestMarshaller().marshall(super
+                        .beforeMarshalling(associateAddressRequest));
+                // Binds the request metrics to the current request.
+                request.setKscRequestMetrics(kscRequestMetrics);
+            } finally {
+                kscRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<AssociateAddressResult> responseHandler = new StaxResponseHandler<AssociateAddressResult>(
+                    new AssociateAddressResultStaxUnmarshaller());
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getKscResponse();
+
+        } finally {
+
+            endClientExecution(kscRequestMetrics, request, response);
+        }
+    }
+    
+    @Override
+    public DisassociateAddressResult disassociateAddress(DisassociateAddressRequest disassociateAddressRequest) {
+        ExecutionContext executionContext = createExecutionContext(disassociateAddressRequest);
+        KscRequestMetrics kscRequestMetrics = executionContext.getKscRequestMetrics();
+        kscRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociateAddressRequest> request = null;
+        Response<DisassociateAddressResult> response = null;
+        try {
+            kscRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociateAddressRequestMarshaller().marshall(super
+                        .beforeMarshalling(disassociateAddressRequest));
+                // Binds the request metrics to the current request.
+                request.setKscRequestMetrics(kscRequestMetrics);
+            } finally {
+                kscRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+
+            StaxResponseHandler<DisassociateAddressResult> responseHandler = new StaxResponseHandler<DisassociateAddressResult>(
+                    new DisassociateAddressResultStaxUnmarshaller());
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getKscResponse();
+
+        } finally {
+
+            endClientExecution(kscRequestMetrics, request, response);
+        }
+    }
+
 }
